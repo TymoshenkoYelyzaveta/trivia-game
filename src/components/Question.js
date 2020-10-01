@@ -1,7 +1,7 @@
 import React from 'react';
 import shuffle from 'lodash.shuffle';
 
-const Question = ({ question }) => {
+const Question = ({ question, answerQuestion }) => {
   const answers = shuffle([
     ...question.incorrect_answers,
     question.correct_answer,
@@ -14,7 +14,8 @@ const Question = ({ question }) => {
         <button
           key={index}
           dangerouslySetInnerHTML={{ __html: answer }}
-        ></button>
+          onClick={() => answerQuestion(answer)}
+        />
       ))}
     </div>
   );

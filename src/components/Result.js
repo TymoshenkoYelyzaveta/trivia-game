@@ -1,34 +1,40 @@
 import React from 'react';
 
-const Result = () => {
+const Result = ({ isCorrect, question, getQuestion }) => {
   return (
-    <div className='result'>
+    <div className={`result ${isCorrect ? 'is-correct' : 'is-wrong'}`}>
       <div className='overlay' />
       <div className='result__content'>
-        <h3>
-          <span role='img' aria-label=''>
-            👊👊👊
-          </span>
-          <br />
-          YOU WON!
-        </h3>
+        {isCorrect && (
+          <h3>
+            <span role='img' aria-label=''>
+              👊👊👊
+            </span>
+            <br />
+            YOU WON!
+          </h3>
+        )}
+        {!isCorrect && (
+          <h3>
+            <span role='img' aria-label=''>
+              😟😢😟
+            </span>
+            <br />
+            YOU LOST!
+          </h3>
+        )}
 
-        <h3>
-          <span role='img' aria-label=''>
-            😟😢😟
-          </span>
-          <br />
-          YOU LOST!
-        </h3>
-
-        <div className='correct-answer'>
-          <small>The correct answer was:</small>
-          <br />
-          <strong>Answer here</strong>
-        </div>
-
-        <button>
-          Go to next question{' '}
+        {!isCorrect && (
+          <div className='correct-answer'>
+            <small>The correct answer was:</small>
+            <br />
+            <strong
+              dangerouslySetInnerHTML={{ __html: question.correct_answer }}
+            />
+          </div>
+        )}
+        <button onClick={getQuestion}>
+          Go to next question
           <span role='img' aria-label=''>
             👉
           </span>

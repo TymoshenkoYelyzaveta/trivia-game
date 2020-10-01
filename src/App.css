@@ -109,7 +109,7 @@ body {
 }
 
 .result__content {
-  background: #fff;
+  background: #93b3c0;
   border-radius: 5px;
   padding: 30px;
   width: 400px;
@@ -140,12 +140,15 @@ body {
   margin-bottom: 20px;
 }
 
-.result__content .correct-answer small {
-  color: #777;
+.result__content .correct-answer small,
+.result__content .correct-answer strong {
+  color: #e9f0eb;
 }
 
 .result__content .correct-answer strong {
+  display: block;
   font-size: 40px;
+  margin-top: 15px;
 }
 
 .question__main {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import Question from './components/Question';
-// import Result from './components/Result';
+import Result from './components/Result';
 import Scoreboard from './components/Scoreboard';
 import CategorySelector from './components/CategorySelector';
 import './App.css';
@@ -8,8 +8,10 @@ import './App.css';
 const App = () => {
   const [question, setQuestion] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('any');
+  const [isCorrect, setIsCorrect] = useState(null);
 
   const getQuestion = useCallback(() => {
+    setIsCorrect(null);
     let url = `https://opentdb.com/api.php?amount=1`;
     if (selectedCategory !== 'any') url += `&category=${selectedCategory}`;
     fetch(url)
@@ -23,9 +25,19 @@ const App = () => {
     getQuestion();
   }, [getQuestion, selectedCategory]);
 
+  const handleQuestionAnswered = (answer) => {
+    const isAnswerCorrect = answer === question.correct_answer;
+    setIsCorrect(isAnswerCorrect);
+  };
   return (
     <div className='app'>
-      {/* <Result /> */}
+      {isCorrect !== null && (
+        <Result
+          isCorrect={isCorrect}
+          question={question}
+          getQuestion={getQuestion}
+        />
+      )}
       <div className='question__header'>
         <CategorySelector
           category={selectedCategory}
@@ -34,10 +46,15 @@ const App = () => {
         <Scoreboard />
       </div>
       <div className='question__main'>
-        {question && <Question question={question} />}
+        {question && (
+          <Question
+            question={question}
+            answerQuestion={handleQuestionAnswered}
+          />
+        )}
       </div>
       <div className='question__footer'>
-        <button>
+        <button onClick={getQuestion}>
           Go to next question
           <span role='img' aria-label=''>
             👉
