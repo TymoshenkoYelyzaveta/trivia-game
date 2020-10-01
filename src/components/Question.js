@@ -11,7 +11,10 @@ const Question = ({ question }) => {
     <div className='question'>
       <h2 dangerouslySetInnerHTML={{ __html: question.question }} />
       {answers.map((answer, index) => (
-        <button key={index}>{answer}</button>
+        <button
+          key={index}
+          dangerouslySetInnerHTML={{ __html: answer }}
+        ></button>
       ))}
     </div>
   );
