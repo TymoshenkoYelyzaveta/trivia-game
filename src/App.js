@@ -27,6 +27,7 @@ const App = () => {
 
   const handleQuestionAnswered = (answer) => {
     const isAnswerCorrect = answer === question.correct_answer;
+
     setIsCorrect(isAnswerCorrect);
   };
   return (
@@ -43,7 +44,7 @@ const App = () => {
           category={selectedCategory}
           chooseCategory={setSelectedCategory}
         />
-        <Scoreboard />
+        <Scoreboard isCorrect={isCorrect} />
       </div>
       <div className='question__main'>
         {question && (
