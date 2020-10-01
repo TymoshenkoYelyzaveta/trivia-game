@@ -1,24 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import Question from './components/Question';
+// import Result from './components/Result';
+import Scoreboard from './components/Scoreboard';
+import CategorySelector from './components/CategorySelector';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      {/* <Result /> */}
+      <div className='question__header'>
+        <CategorySelector />
+        <Scoreboard />
+      </div>
+      <div className='question__main'>
+        <Question />
+      </div>
+      <div className='question__footer'>
+        <button>
+          Go to next question
+          <span role='img' aria-label=''>
+            👉
+          </span>
+        </button>
+      </div>
     </div>
   );
 }

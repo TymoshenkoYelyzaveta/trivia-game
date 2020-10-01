@@ -1,38 +1,211 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #162b3f;
+  color: #e9f0eb;
 }
 
-.App-link {
-  color: #61dafb;
+.app {
+  max-width: 500px;
+  padding-bottom: 30px;
+  padding-top: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.question__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.category-selector {
+  max-width: 60%;
+}
+.category-selector select {
+  padding: 10px 10px 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  outline: 0;
+  background-color: #e9f0eb;
+  color: #162b3f;
+
+  /* replace default styling (arrow) */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="50"><polygon points="0,0 100,0 50,50" style="fill:%23666666"/></svg>');
+  background-position: right 15px top 50%;
+  background-repeat: no-repeat;
+  background-size: 10px;
+  padding-right: 30px;
+}
+
+.category-selector select option {
+  padding: 10px;
+  font-size: 13px;
+}
+
+.category-selector p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.scoreboard {
+  display: flex;
+  align-items: center;
+  text-align: right;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.scoreboard > div:first-child {
+  margin-right: 25px;
+}
+
+.scoreboard .wrong {
+  color: rgb(211, 79, 79);
+}
+
+.scoreboard .correct {
+  color: rgb(63, 162, 63);
+}
+
+.scoreboard strong {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.result {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background: rgb(0, 0, 0, 0.5);
+}
+
+.result__content {
+  background: #fff;
+  border-radius: 5px;
+  padding: 30px;
+  width: 400px;
+  margin: 0 auto;
+  max-width: 90%;
+  text-align: center;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.result.is-correct h3 {
+  color: rgb(63, 162, 63);
+}
+
+.result.is-wrong h3 {
+  color: rgb(211, 79, 79);
+}
+
+.result__content h3 {
+  font-size: 30px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.result__content .correct-answer {
+  margin-bottom: 20px;
+}
+
+.result__content .correct-answer small {
+  color: #777;
+}
+
+.result__content .correct-answer strong {
+  font-size: 40px;
+}
+
+.question__main {
+  background: #e9f0eb;
+  color: #162b3f;
+  border-radius: 10px;
+  padding: 2.5rem;
+  min-width: 500px;
+  max-width: 90%;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+}
+
+.question {
+  width: 100%;
+}
+
+.question h2 {
+  margin-top: 0;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: center;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #e9f0eb;
+  padding: 0.8rem;
+  border-radius: 0.25rem;
+  border: 0;
+  outline: 0;
+  background-color: #495f72;
+  line-height: 1;
+}
+
+button:hover,
+button:active {
+  transform: translateY(-2px);
+}
+
+.question__footer {
+  margin-top: 15px;
+  text-align: right;
+}
+
+.question__footer button {
+  background: #93b3c0;
+  color: #162b3f;
+  text-transform: uppercase;
+  width: auto;
+  margin-left: auto;
+  font-size: 12px;
+  padding: 10px 20px;
+}
+
+.question__footer span {
+  margin-left: 5px;
 }
